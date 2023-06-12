@@ -14,16 +14,19 @@ public class NPCVehicleAgent : Agent {
     }
 
     public override void OnEpisodeBegin() {
-        vehicle.Reset();
+
+        // ToDo: Reset the environment
+        //vehicle.TargetPosition = transform.localPosition;
     }
 
     public override void CollectObservations(VectorSensor sensor) {
+        //ToDo: Add Observations except for the vision of the agent
     }
 
     public override void OnActionReceived(ActionBuffers actionBuffers) {
         float x = actionBuffers.ContinuousActions[0];
         float z = actionBuffers.ContinuousActions[1];
-        //target = new Vector3(x, 0, z);
+        //vehicle.TargetPosition = new Vector3(x, 0, z) + transform.localPosition;
     }
     
     public override void Heuristic(in ActionBuffers actionsOut) {

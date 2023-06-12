@@ -180,6 +180,9 @@ namespace AWSIM
         [SerializeField] EmissionMaterial leftTurnSignalLight;
         [SerializeField] EmissionMaterial rightTurnSignalLight;
 
+        [Header("Control Method")]
+        public bool isAdjust = false;
+
         TurnSignalState turnSignalState = TurnSignalState.OFF;
         float turnSignalTimer = 0;
         bool currentTurnSignalOn = false;
@@ -194,6 +197,11 @@ namespace AWSIM
         Vector3 lastPosition;
         float lastEulerAnguleY;
         float lastSpeed;
+        // The Offsets
+        public Vector3 OffsetPosition{get; set;}
+        public float OffsetYaw {get; set;}
+        private float maxtargetDistance = 10f;
+        
 
         // Start is called before the first frame update
         void Awake()
@@ -210,6 +218,8 @@ namespace AWSIM
         // Update is called once per frame
         void Update()
         {
+
+            //Debug.Log("localPosition:"+ transform.localPosition + "targetPoint:"+TargetPosition);
             // Update Wheel visuals.
             var steerAngle = CalcSteerAngle(speed, yawAngularSpeed, wheelbase);
             axleSettings.UpdateVisual(speed, steerAngle);
