@@ -6,6 +6,7 @@ using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
 using AWSIM;
+using UnityEngine.SceneManagement;
 
 public class NPCVehicleAgent : Agent {
     NPCVehicle vehicle;
@@ -16,7 +17,8 @@ public class NPCVehicleAgent : Agent {
     public override void OnEpisodeBegin() {
 
         // ToDo: Reset the environment
-        //vehicle.TargetPosition = transform.localPosition;
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
     }
 
     public override void CollectObservations(VectorSensor sensor) {
@@ -26,12 +28,17 @@ public class NPCVehicleAgent : Agent {
     public override void OnActionReceived(ActionBuffers actionBuffers) {
         float x = actionBuffers.ContinuousActions[0];
         float z = actionBuffers.ContinuousActions[1];
-        //vehicle.TargetPosition = new Vector3(x, 0, z) + transform.localPosition;
+        vehicle.AdjustPosition = new Vector3(x, 0, z);
+        float yaw = actionBuffers.ContinuousActions[2];
+        vehicle.AdjustRotation = Quaternion.Euler(0, yaw, 0);
+
+        if (vehicle.isAdjust) {
+            vehicle.SetPosition(vehicle.transform.position + vehicle.AdjustPosition);
+            vehicle.SetRotation(vehicle.transform.rotation * vehicle.AdjustRotation);
+        }
     }
     
     public override void Heuristic(in ActionBuffers actionsOut) {
-        ActionSegment<float> continuousActions = actionsOut.ContinuousActions;
-        continuousActions[0] = Input.GetAxis("Horizontal");
-        continuousActions[1] = Input.GetAxis("Vertical");
+        
     }
 }

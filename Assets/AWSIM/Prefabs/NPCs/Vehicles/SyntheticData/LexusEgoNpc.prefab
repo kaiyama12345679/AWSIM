@@ -1179,7 +1179,7 @@ GameObject:
   - component: {fileID: 4489991999923691292}
   m_Layer: 6
   m_Name: LexusEgoNpc
-  m_TagString: Ego
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1271,6 +1271,7 @@ MonoBehaviour:
     lightingIntensity: 0
     lightingColor: {r: 0, g: 0, b: 0, a: 0}
     lightingExposureWeight: 0
+  isAdjust: 0
 --- !u!1 &2907940157626469500
 GameObject:
   m_ObjectHideFlags: 0

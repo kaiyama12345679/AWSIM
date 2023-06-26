@@ -198,9 +198,8 @@ namespace AWSIM
         float lastEulerAnguleY;
         float lastSpeed;
         // The Offsets
-        public Vector3 OffsetPosition{get; set;}
-        public float OffsetYaw {get; set;}
-        private float maxtargetDistance = 10f;
+        public Vector3 AdjustPosition{get; set;}
+        public Quaternion AdjustRotation{get; set;}
         
 
         // Start is called before the first frame update

@@ -96,10 +96,6 @@ namespace AWSIM.TrafficSimulation
             position += state.Forward * state.Speed * deltaTime;
             position.y = state.TargetPoint.y;
             state.Position = position;
-            if (state.Vehicle.isAdjust) {
-                state.Yaw += state.Vehicle.OffsetYaw;
-                state.Position += state.Vehicle.OffsetPosition;
-            }
         }
     }
 }

@@ -220,6 +220,10 @@ namespace AWSIM
         Vector3 lastPosition;
         Quaternion lastRotation;
 
+        // estimate value as a malcov model.
+        public Vector3 DifferencePosition => LocalVelocity * Time.deltaTime * 5 + LocalAcceleration * Mathf.Pow(Time.deltaTime * 5, 2) / 2;
+        public float DifferenceRotationY => AngularVelocity.y * Mathf.Rad2Deg * Time.deltaTime * 5;
+
         // Sleep position & rotation
         Vector3 sleepPositon;
         Quaternion sleepRotation;
@@ -268,6 +272,9 @@ namespace AWSIM
             lastPosition = m_transform.position;
             lastRotation = m_transform.rotation;
             lastSleep = sleep;
+
+            // estimate value as a malcov model.
+            
 
             // ----- inner methods -----
 

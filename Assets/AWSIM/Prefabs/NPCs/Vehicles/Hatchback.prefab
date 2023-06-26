@@ -851,7 +851,7 @@ GameObject:
   - component: {fileID: -7997422737886591000}
   m_Layer: 6
   m_Name: Hatchback
-  m_TagString: Untagged
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -940,7 +940,7 @@ MonoBehaviour:
     lightingIntensity: 20
     lightingColor: {r: 1, g: 1, b: 0, a: 1}
     lightingExposureWeight: 0.6
-  isPursuit: 0
+  isAdjust: 0
 --- !u!205 &11694345330987065
 LODGroup:
   m_ObjectHideFlags: 0
@@ -985,14 +985,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 1
+    VectorObservationSize: 0
     NumStackedVectorObservations: 1
     m_ActionSpec:
-      m_NumContinuousActions: 0
-      BranchSizes: 01000000
-    VectorActionSize: 01000000
+      m_NumContinuousActions: 3
+      BranchSizes: 
+    VectorActionSize: 03000000
     VectorActionDescriptions: []
-    VectorActionSpaceType: 0
+    VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 0}
   m_InferenceDevice: 0
