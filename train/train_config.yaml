@@ -1,29 +1,34 @@
 behaviors:
-  Sample:
-    trainer_type: ppo
-    behavioral_cloning:
-      demo_path: /home/kai-yamashita/Desktop/AWSIM/Assets/Demonstrations/EgoVehicleDemo.demo
-      strength: 1.0
-      steps: 1000000
-    reward_signals:
-      gail:
-        demonstration_path: /home/kai-yamashita/Desktop/AWSIM/Assets/Demonstrations/EgoVehicleDemo.demo
-        strength: 0.1
-        gamma: 0.99
-        encoding_size: 64
-    max_steps: 5000000
-    time_horizon: 1000
-    summary_freq: 10000
+  HatchBack:
+    trainer_type: sac
     hyperparameters:
-      batch_size: 1024
-      buffer_size: 10240
-      learning_rate: 3.0e-4
-      beta: 5.0e-4
-      epsilon: 0.2
-      lambd: 0.95
-      num_epoch: 3
-      learning_rate_schedule: linear
+      learning_rate: 0.0003
+      learning_rate_schedule: constant
+      batch_size: 128
+      buffer_size: 2000000
+      buffer_init_steps: 1000
+      tau: 0.01
+      steps_per_update: 10.0
+      save_replay_buffer: false
+      init_entcoef: 0.01
+      reward_signal_steps_per_update: 10.0
     network_settings:
       normalize: false
-      hidden_units: 128
-      num_layers: 2
+      hidden_units: 512
+      num_layers: 3
+      vis_encode_type: simple
+    reward_signals:
+      extrinsic:
+        gamma: 0.995
+        strength: 2.0
+      gail:
+        gamma: 0.99
+        strength: 0.01
+        learning_rate: 0.0003
+        use_actions: true
+        use_vail: false
+        demo_path: /home/kai-yamashita/Desktop/AWSIM/Assets/Demonstrations/EgoVehicleDemo.demo
+    keep_checkpoints: 5
+    max_steps: 3000000
+    time_horizon: 128
+    summary_freq: 30000
