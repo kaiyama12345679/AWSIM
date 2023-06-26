@@ -66,3 +66,4 @@ crashlytics-build.properties
 ![Aa]ssets/AWSIM/Externals/.gitkeep
 ./train/results/
 ./Assets/Demonstrations/
+./outputs/
